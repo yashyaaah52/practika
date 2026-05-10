@@ -1,7 +1,7 @@
 import sqlite3
 
 # Импорт имени файла 
-from config import DB_NAME 
+from database.config import DB_NAME 
 
 # Функция для подключения к базе данных
 def get_connection():
@@ -84,7 +84,3 @@ def initialize_db():
     # Закрываем соединение с базой данных
     conn.close()
 
-# Блок для проверки запуска (создаст БД при прямом запуске файла)
-if __name__ == "__main__":
-    initialize_db()
-    print("База данных успешно инициализирована.")
