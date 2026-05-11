@@ -15,10 +15,11 @@ def menu_employees():
                 print(f"ID: {e.id} | {e.name} — {e.position}")
         
         elif choice == "2":
-            name = input("ФИО сотрудника: ")
-            pos = input("Должность: ")
-            phone = input("Телефон: ")
-            emp = Employee(name=name, position=pos, phone=phone)
+            name = input("Введите ФИО сотрудника: ")
+            passport = input("Введите паспортные данные: ")  # Corrected
+            phone = input("Введите номер телефона: ")
+
+            emp = Employee(name=name, passport=passport, phone=phone)
             emp.save()
             print("✅ Сотрудник добавлен.")
             
