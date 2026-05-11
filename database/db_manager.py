@@ -16,7 +16,7 @@ def initialize_db():
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Client (
         ClientID INTEGER PRIMARY KEY AUTOINCREMENT, -- Уникальный идентификатор
-        FullName TEXT NOT NULL,                     -- ФИО клиента
+        Fullname TEXT NOT NULL,                     -- ФИО клиента
         PassportData TEXT,                          -- Паспортные данные
         Phone TEXT,                                 -- Номер телефона
         Reliability TEXT                            -- Статус благонадежности

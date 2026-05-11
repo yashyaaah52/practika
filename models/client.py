@@ -12,14 +12,16 @@ class Client:
         conn = get_connection()
         cursor = conn.cursor()
         if self.id is None:
+
             cursor.execute("""
-                INSERT INTO Client (name, passportData, phoneNumber, reliabilityStatus)
+                INSERT INTO Client (Fullname, PassportData, Phone, Reliability)
                 VALUES (?, ?, ?, ?)
             """, (self.name, self.passport, self.phone, self.reliability))
             self.id = cursor.lastrowid
         else:
+
             cursor.execute("""
-                UPDATE Client SET name = ?, passportData = ?, phoneNumber = ?, reliabilityStatus = ?
+                UPDATE Client SET Fullname = ?, PassportData = ?, Phone = ?, Reliability = ?
                 WHERE ClientID = ?
             """, (self.name, self.passport, self.phone, self.reliability, self.id))
         conn.commit()
@@ -28,7 +30,8 @@ class Client:
 def get_all_clients():
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT ClientID, name, passportData, phoneNumber, reliabilityStatus FROM Client")
+
+    cursor.execute("SELECT ClientID, Fullname, PassportData, Phone, Reliability FROM Client")
     rows = cursor.fetchall()
     conn.close()
     return [Client(*row) for row in rows]
