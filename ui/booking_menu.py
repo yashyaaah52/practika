@@ -1,6 +1,7 @@
 from models.booking import Booking, check_availability
 from models.client import get_all_clients
 from models.equipment import get_all_equipment
+from models.booking import get_all_bookings
 
 def menu_bookings():
     while True:
@@ -47,8 +48,22 @@ def menu_bookings():
                 print("\n❌ Ошибка: Оборудование занято на выбранные даты.")
         
         elif choice == "2":
-            # Здесь можно добавить вызов функции get_all_bookings, если она есть в моделях
-            print("\nФункция просмотра списка броней в разработке...")
+
+            bookings = get_all_bookings()
+
+            print("\n--- СПИСОК БРОНЕЙ ---")
+
+            if len(bookings) == 0:
+                print("Броней нет.")
+            else:
+                for b in bookings:
+                    print(
+                    f"ID брони: {b.id} | "
+                    f"Клиент ID: {b.client_id} | "
+                    f"Оборудование ID: {b.equipment_id} | "
+                    f"С {b.start_date} по {b.end_date} | "
+                    f"Статус: {b.status}"
+                    )
             
         elif choice == "0":
             break

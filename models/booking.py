@@ -40,3 +40,34 @@ def check_availability(equipment_id, start_date, end_date):
     count = cursor.fetchone()[0]
     conn.close()
     return count == 0
+
+#функция для вывода всех броней
+def get_all_bookings():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT BookingID, ClientID, EquipmentID,
+               StartDate, EndDate, Status
+        FROM Bookings
+    """)
+
+    rows = cursor.fetchall()
+
+    bookings = []
+
+    for row in rows:
+        booking = Booking(
+            booking_id=row[0],
+            client_id=row[1],
+            equipment_id=row[2],
+            start_date=row[3],
+            end_date=row[4],
+            status=row[5]
+        )
+
+        bookings.append(booking)
+
+    conn.close()
+
+    return bookings
