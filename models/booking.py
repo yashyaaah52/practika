@@ -94,12 +94,8 @@ def get_all_bookings():
 
     cursor.execute("""
         SELECT
-            b.BookingID,
-            c.Fullname,
-            e.name,
-            b.StartDate,
-            b.EndDate,
-            b.Status
+            b.BookingID, c.Fullname, e.name,
+            b.StartDate, b.EndDate, b.Status
         FROM Bookings b
         JOIN Client c
             ON b.ClientID = c.ClientID
