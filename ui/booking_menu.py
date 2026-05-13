@@ -6,7 +6,7 @@ from models.booking import (
     get_all_bookings
 )
 
-from models.client import get_all_clients
+from models.client import get_all_client
 from models.equipment import get_all_equipment
 
 
@@ -94,7 +94,7 @@ def menu_bookings():
 
                 print("\n--- Выбор клиента ---")
 
-                clients = get_all_clients()
+                clients = get_all_client()
 
                 for c in clients:
                     print(

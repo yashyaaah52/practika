@@ -27,7 +27,16 @@ class Client:
         conn.commit()
         conn.close()
 
-def get_all_clients():
+    def delete(self):
+        """Удаляет клиента из базы данных"""
+        if self.id is not None:
+            conn = get_connection()
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM Client WHERE ClientID = ?", (self.id,))
+            conn.commit()
+            conn.close()
+
+def get_all_client():
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -35,3 +44,24 @@ def get_all_clients():
     rows = cursor.fetchall()
     conn.close()
     return [Client(*row) for row in rows]
+
+def get_client_by_id(client_id):
+    """Находит конкретного клиента по айди"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT ClientID, FullName, PassportData, Phone, Reliability
+        FROM Client
+        WHERE ClientID = ?
+    """, (client_id,))
+    row = cursor.fetchone()
+    conn.close()
+    
+    if row:
+        return Client(client_id=row[0],
+                        name=row[1],
+                        passport=row[2], 
+                        phone=row[3], 
+                        reliability=row[4]
+                    )
+    return None

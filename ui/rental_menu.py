@@ -1,5 +1,5 @@
 from models.rental import Rental, get_all_rentals, get_rental_by_id
-from models.client import get_all_clients
+from models.client import get_all_client
 from models.equipment import get_all_equipment, get_equipment_by_id
 from models.employee import get_all_employees
 from datetime import datetime
@@ -57,7 +57,7 @@ def menu_rentals():
             print("\n=== Оформление нового договора ===")
 
             # 1. Выбор клиента
-            clients = get_all_clients()
+            clients = get_all_client()
 
             for c in clients:
                 print(f"{c.id}. {c.name}")
