@@ -54,6 +54,15 @@ class Booking:
         conn.commit()
         conn.close()
 
+    def delete(self):
+        """Удаляет бронь из базы данных"""
+        if self.id is not None:
+            conn = get_connection()
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM Booking WHERE BookingID = ?", (self.id,))
+            conn.commit()
+            conn.close()
+
 
 # Проверка доступности оборудования
 def check_availability(equipment_id, start_date, end_date):

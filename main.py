@@ -5,6 +5,7 @@ from ui.rental_menu import menu_rentals
 from ui.booking_menu import menu_bookings
 from ui.reports_menu import menu_reports
 from ui.employee_menu import menu_employees
+from database.db_manager import initialize_db
 
 def show_main_menu():
     print("\n" + "="*40)
@@ -21,6 +22,9 @@ def show_main_menu():
     return input("Выберите пункт меню: ")
 
 def main():
+
+    initialize_db()
+
     while True:
         choice = show_main_menu()
         

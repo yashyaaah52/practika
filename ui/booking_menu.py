@@ -20,6 +20,7 @@ def menu_bookings():
 
         print("1. Проверить доступность и создать бронь")
         print("2. Просмотреть все брони")
+        print("3. Удалить бронь")
         print("0. Назад в главное меню")
 
         print("=" * 30)
@@ -149,6 +150,12 @@ def menu_bookings():
                         f"С {b[3]} по {b[4]} | "
                         f"Статус: {b[5]}"
                     )
+
+        elif choice == "3":
+            id_to_delete = input("Введите ID брони для удаления: ")
+            booking = Booking(booking_id=int(id_to_delete))
+            booking.delete()
+            print("🗑️ Запись удалена.")
 
         elif choice == "0":
             break
