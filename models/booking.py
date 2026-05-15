@@ -1,7 +1,9 @@
+"""Модуль работы с арендой."""
 from database.db_manager import get_connection
 
 
 class Booking:
+    """Класс бронь."""
     def __init__(self, booking_id=None, client_id=None, equipment_id=None,
                  start_date=None, end_date=None, status="Ожидание"):
 
@@ -59,7 +61,8 @@ class Booking:
         if self.id is not None:
             conn = get_connection()
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM Booking WHERE BookingID = ?", (self.id,))
+            cursor.execute(
+                "DELETE FROM Booking WHERE BookingID = ?", (self.id,))
             conn.commit()
             conn.close()
 

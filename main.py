@@ -1,3 +1,4 @@
+"""Главный модуль приложения."""
 import sys
 from ui.menu_equipment import menu_equipment
 from ui.client_menu import menu_clients
@@ -6,6 +7,7 @@ from ui.booking_menu import menu_bookings
 from ui.reports_menu import menu_reports
 from ui.employee_menu import menu_employees
 from database.db_manager import initialize_db
+
 
 def show_main_menu():
     print("\n" + "="*40)
@@ -21,13 +23,14 @@ def show_main_menu():
     print("="*40)
     return input("Выберите пункт меню: ")
 
+
 def main():
 
     initialize_db()
 
     while True:
         choice = show_main_menu()
-        
+
         if choice == "1":
             menu_equipment()
         elif choice == "2":
@@ -45,6 +48,7 @@ def main():
             sys.exit()
         else:
             print("❌ Ошибка: Выберите корректный пункт меню (0-6).")
+
 
 if __name__ == "__main__":
     try:

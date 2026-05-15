@@ -1,4 +1,6 @@
+"""Модуль работы с отчетами."""
 from database.db_manager import get_connection
+
 
 def get_financial_report():
     conn = get_connection()
@@ -10,6 +12,7 @@ def get_financial_report():
         "revenue": result[0] if result[0] else 0.0,
         "penalties": result[1] if result[1] else 0.0
     }
+
 
 def get_equipment_status_report():
     conn = get_connection()

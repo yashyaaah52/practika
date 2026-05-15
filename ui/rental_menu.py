@@ -1,8 +1,11 @@
+"""Модуль работы с арендой."""
+from datetime import datetime
+
 from models.rental import Rental, get_all_rentals, get_rental_by_id
 from models.client import get_all_client
 from models.equipment import get_all_equipment, get_equipment_by_id
 from models.employee import get_all_employees
-from datetime import datetime
+
 
 def calculate_rental_cost(equipment_id, start_date_str, end_date_str):
     """Вспомогательная функция для расчета стоимости: ставка * дни"""
@@ -20,7 +23,7 @@ def calculate_rental_cost(equipment_id, start_date_str, end_date_str):
 
         return days * equipment.daily_cost
 
-    except:
+    except Exception:
         return 0.0
 
 
@@ -101,7 +104,7 @@ def menu_rentals():
 
                     break
 
-                except:
+                except Exception:
                     print("❌ Неверный формат даты.")
 
             # Расчет стоимости
@@ -137,7 +140,8 @@ def menu_rentals():
 
         elif choice == "4":
 
-            rental_id = int(input("Введите ID аренды для оформления возврата: "))
+            rental_id = int(
+                input("Введите ID аренды для оформления возврата: "))
 
             rental = get_rental_by_id(rental_id)
 
@@ -165,7 +169,8 @@ def menu_rentals():
 
                     equipment = get_equipment_by_id(rental.equipment_id)
 
-                    rental.penalty_amount = overdue_days * (equipment.daily_cost * 1.5)
+                    rental.penalty_amount = overdue_days * \
+                        (equipment.daily_cost * 1.5)
 
                     print(f"⚠️ Просрочка {overdue_days} дн. "
                           f"Штраф: {rental.penalty_amount} руб.")

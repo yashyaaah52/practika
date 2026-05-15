@@ -1,1 +1,1 @@
-DB_NAME = "rent_accounting.db" 
+DB_NAME = "rent_accounting.db"

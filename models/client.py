@@ -1,6 +1,9 @@
+"""Модуль работы с клиентами."""
 from database.db_manager import get_connection
 
+
 class Client:
+    """Класс клиент."""
     def __init__(self, client_id=None, name=None, passport=None, phone=None, reliability="Высокая"):
         self.id = client_id
         self.name = name
@@ -36,14 +39,17 @@ class Client:
             conn.commit()
             conn.close()
 
+
 def get_all_client():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT ClientID, Fullname, PassportData, Phone, Reliability FROM Client")
+    cursor.execute(
+        "SELECT ClientID, Fullname, PassportData, Phone, Reliability FROM Client")
     rows = cursor.fetchall()
     conn.close()
     return [Client(*row) for row in rows]
+
 
 def get_client_by_id(client_id):
     """Находит конкретного клиента по айди"""
@@ -56,12 +62,12 @@ def get_client_by_id(client_id):
     """, (client_id,))
     row = cursor.fetchone()
     conn.close()
-    
+
     if row:
         return Client(client_id=row[0],
-                        name=row[1],
-                        passport=row[2], 
-                        phone=row[3], 
-                        reliability=row[4]
-                    )
+                      name=row[1],
+                      passport=row[2],
+                      phone=row[3],
+                      reliability=row[4]
+                      )
     return None

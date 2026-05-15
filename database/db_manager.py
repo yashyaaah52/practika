@@ -1,13 +1,17 @@
 import sqlite3
 
-# Импорт имени файла 
-from database.config import DB_NAME 
+# Импорт имени файла
+from database.config import DB_NAME
 
 # Функция для подключения к базе данных
+
+
 def get_connection():
     return sqlite3.connect(DB_NAME)
 
 # Функция инициализации базы данных: создаёт все таблицы из физической модели
+
+
 def initialize_db():
     conn = get_connection()
     cursor = conn.cursor()
@@ -23,7 +27,7 @@ def initialize_db():
     )
     ''')
 
-    # Создание таблицы "Сотрудники" 
+    # Создание таблицы "Сотрудники"
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Employees (
         EmployeeID INTEGER PRIMARY KEY AUTOINCREMENT, -- Уникальный идентификатор
@@ -33,7 +37,7 @@ def initialize_db():
     )
     ''')
 
-    # Создание таблицы "Оборудование" 
+    # Создание таблицы "Оборудование"
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Equipment (
         EquipmentID INTEGER PRIMARY KEY AUTOINCREMENT, -- Уникальный идентификатор
@@ -83,4 +87,3 @@ def initialize_db():
     conn.commit()
     # Закрываем соединение с базой данных
     conn.close()
-

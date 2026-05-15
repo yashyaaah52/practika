@@ -1,7 +1,9 @@
+"""Модуль работы с арендой."""
 from database.db_manager import get_connection
 
 
 class Rental:
+    """Класс аренда."""
     def __init__(self, rental_id=None, client_id=None, employee_id=None,
                  equipment_id=None, issue_date=None, planned_return=None,
                  actual_return=None, total_cost=0.0,

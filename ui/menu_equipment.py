@@ -1,4 +1,6 @@
+"""Модуль работы с оборудованием."""
 from models.equipment import Equipment, get_all_equipment, get_equipment_by_id
+
 
 def menu_equipment():
     while True:
@@ -8,9 +10,9 @@ def menu_equipment():
         print("3. Удалить оборудование")
         print("4. Редактировать данные оборудования")
         print("0. Назад в главное меню")
-        
+
         choice = input("Выберите действие: ")
-        
+
         if choice == "1":
             equipment_list = get_all_equipment()
             print("\nКаталог оборудования:")
@@ -29,7 +31,7 @@ def menu_equipment():
             daily_cost = float(input("Стоимость аренды за сутки: "))
             status = input("Текущий статус (например, На складе): ")
             condition = input("Техническое состояние (например, Новое): ")
-            
+
             new_item = Equipment(
                 name=name,
                 category=category,
@@ -48,9 +50,10 @@ def menu_equipment():
             print("🗑️ Запись удалена.")
 
         elif choice == "4":
-            id_to_edit = int(input("Введите ID оборудования для редактирования: "))
+            id_to_edit = int(
+                input("Введите ID оборудования для редактирования: "))
             current_item = get_equipment_by_id(id_to_edit)
-            
+
             if not current_item:
                 print("❌ Оборудование с таким ID не найдено!")
                 continue
@@ -58,8 +61,10 @@ def menu_equipment():
             print("\nОставьте поле пустым, чтобы не изменять текущее значение")
             name = input(f"Новое название [{current_item.name}]: ")
             category = input(f"Новая категория [{current_item.category}]: ")
-            serial_number = input(f"Новый серийный номер [{current_item.serial_number}]: ")
-            daily_cost = input(f"Новая стоимость/сутки [{current_item.daily_cost}]: ")
+            serial_number = input(
+                f"Новый серийный номер [{current_item.serial_number}]: ")
+            daily_cost = input(
+                f"Новая стоимость/сутки [{current_item.daily_cost}]: ")
             status = input(f"Новый статус [{current_item.status}]: ")
             condition = input(f"Новое состояние [{current_item.condition}]: ")
 
@@ -68,7 +73,8 @@ def menu_equipment():
                 name=name if name else current_item.name,
                 category=category if category else current_item.category,
                 serial_number=serial_number if serial_number else current_item.serial_number,
-                daily_cost=float(daily_cost) if daily_cost else current_item.daily_cost,
+                daily_cost=float(
+                    daily_cost) if daily_cost else current_item.daily_cost,
                 status=status if status else current_item.status,
                 condition=condition if condition else current_item.condition
             )

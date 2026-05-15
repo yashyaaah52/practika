@@ -1,3 +1,4 @@
+"""Модуль работы с арендой."""
 from datetime import datetime
 
 from models.booking import (
