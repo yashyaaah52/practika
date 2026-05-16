@@ -14,7 +14,7 @@ def menu_employees():
         if choice == "1":
             employees = get_all_employees()
             for e in employees:
-                print(f"ID: {e.id} | {e.name} — {e.position}")
+                print(f"ID: {e.id} | {e.name} | {e.phone} | {e.passport}")
 
         elif choice == "2":
             name = input("Введите ФИО сотрудника: ")
